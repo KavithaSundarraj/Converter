@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +15,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    public void convert(View view)
+    {
+        //View text = findViewById(R.id.input_value_from_user):
+        EditText textArea = (EditText) findViewById(R.id.input_value_from_user);
+        String res = textArea.getText().toString();
+        double value = Double.parseDouble(res);
+        double result =0;
+        if(view.getId() == R.id.convert_g_2_kg)
+        {
+            result = value/1000;
+        }
+        else
+        {
+            result = value * 1000;
+        }
+
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        String toDisplay = formatter.format(result);
+
+        Toast toast = Toast.makeText(this, toDisplay, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+
+
     public void calculatefeet(View view) {
         EditText input = (EditText) findViewById(R.id.edit_meter);
         int i = Integer.parseInt(String.valueOf(input.getText()));
