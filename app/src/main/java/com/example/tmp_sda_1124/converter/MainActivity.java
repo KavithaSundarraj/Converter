@@ -16,12 +16,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
     public void convert(View view)
     {
         //View text = findViewById(R.id.input_value_from_user):
         EditText textArea = (EditText) findViewById(R.id.input_value_from_user);
         String res = textArea.getText().toString();
-        double value = Double.parseDouble(res);
+        double value = 0;
+        try
+        {
+            value = Double.parseDouble(res);
+        }
+        catch(NumberFormatException ex)
+        {
+            Toast toast = Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+       // double value = Double.parseDouble(res);
         double result =0;
         if(view.getId() == R.id.convert_g_2_kg)
         {
